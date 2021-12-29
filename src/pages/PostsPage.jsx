@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import Post from "../components/Post";
-import { fetchPosts } from "../reducers/postsActions";
 import "./postsPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts, postsSelector } from "../slices/posts";
+import { Link } from "react-router-dom";
+// Components
+import Post from "../components/Post";
 
-const PostsPage = ({ dispatch, loading, posts, hasErrors }) => {
+const PostsPage = () => {
+  const dispatch = useDispatch();
+  const { loading, posts, hasErrors } = useSelector(postsSelector);
+
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
+
+  console.log(posts);
 
   const renderPosts = () => {
     if (loading) return <p className="loading">Loading posts...</p>;
@@ -29,10 +35,4 @@ const PostsPage = ({ dispatch, loading, posts, hasErrors }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  loading: state.posts.loading,
-  posts: state.posts.posts,
-  hasErrors: state.posts.hasErrors,
-});
-
-export default connect(mapStateToProps)(PostsPage);
+export default PostsPage;

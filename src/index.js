@@ -1,22 +1,20 @@
 // External imports
 import React from "react";
 import ReactDOM from "react-dom";
-import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
+import { configureStore } from "@reduxjs/toolkit";
 
 // Local imports
 import App from "./App";
-import rootReducer from "./reducers";
+import rootReducer from "./slices";
 
 //Styles
 import "./index.css";
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk),
-);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 ReactDOM.render(
   <BrowserRouter>
