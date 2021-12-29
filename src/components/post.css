@@ -1,0 +1,18 @@
+article {
+    background-color: var(--clr-secondary);
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    color: var(--clr-dark-blue);
+    text-transform: capitalize;
+}
+
+.post-paragraph {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--clr-primary);
+}
